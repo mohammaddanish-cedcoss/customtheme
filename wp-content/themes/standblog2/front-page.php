@@ -12,19 +12,18 @@ get_header();
         <div class="owl-banner owl-carousel">
         <?php 
         // the query
-        $wpb_all_query = new WP_Query(array('post_type'=>'post', 'post_status'=>'publish', 'posts_per_page'=>5)); ?>
+        $all_post = new WP_Query(array('post_type'=>'post', 'post_status'=>'publish', 'posts_per_page'=>5)); ?>
         
-        <?php if ( $wpb_all_query->have_posts() ) : 
+        <?php if ( $all_post->have_posts() ) : 
             //the loop 
-            while ( $wpb_all_query->have_posts() ) : $wpb_all_query->the_post(); ?>
+            while ( $all_post->have_posts() ) : $all_post->the_post(); ?>
            
             <!-- end of the loop -->
             <div class="item">
                <?php if ( has_post_thumbnail() ) { 
                blog_post_thumbnail();
                } else  { ?>
-               <img src="<?php echo esc_url( home_url( '/' ) ); ?>wp-content/uploads/2020/12/banner-item-06-1.jpg" alt="no image">
-               <?php } ?>
+                              <?php } ?>
                 <div class="item-content">
                     <div class="main-content">
                         <div class="meta-category">
@@ -54,7 +53,7 @@ get_header();
 <!-- Banner Ends Here -->
 
 <section class="call-to-action" >
-    <div class="container" style="background-color:green">
+    <div class="container">
     <div class="row">
         <div class="col-lg-12">
         <div class="main-content">
@@ -83,12 +82,12 @@ get_header();
                <div class="row">
                     <?php 
                     // the query
-                    $wpb_all_query1= new WP_Query(array('post_type'=>'post', 'post_status'=>'publish', 'posts_per_page'=>4)); ?>
+                    $all_post= new WP_Query(array('post_type'=>'post', 'post_status'=>'publish', 'posts_per_page'=>4)); ?>
                     
-                    <?php if ( $wpb_all_query1->have_posts() ) : 
+                    <?php if ( $all_post->have_posts() ) : 
                         //the loop 
-                        while ( $wpb_all_query1->have_posts() ) : $wpb_all_query1->the_post(); ?>
-                    <div class="col-lg-12">
+                        while ( $all_post->have_posts() ) : $all_post->the_post(); ?>
+                    <div class="col-sm-6">
                      <div class="blog-post">
                         <div class="blog-thumb">
                         <?php if ( has_post_thumbnail() ) { 
@@ -175,6 +174,7 @@ get_header();
                       <h2>Recent Posts</h2>
                     </div>
                     <div class="content">
+                    <?php wp_get_recent_posts(); ?>
                       <ul>
                         <li><a href="post-details.html">
                           <h5>Vestibulum id turpis porttitor sapien facilisis scelerisque</h5>
