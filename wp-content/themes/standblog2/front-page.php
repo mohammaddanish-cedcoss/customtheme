@@ -12,7 +12,7 @@ get_header();
         <div class="owl-banner owl-carousel">
         <?php 
         // the query
-        $all_post = new WP_Query(array('post_type'=>'post', 'post_status'=>'publish', 'posts_per_page'=>5)); ?>
+        $all_post = new WP_Query(array('post_type'=>'post', 'post_status'=>'publish', 'posts_per_page'=>4)); ?>
         
         <?php if ( $all_post->have_posts() ) : 
             //the loop 
@@ -28,7 +28,7 @@ get_header();
                     <div class="main-content">
                         <div class="meta-category">
                             <span>
-                              <?php the_category(' | '); ?>
+                              <?php the_category(); ?>
                             </span>
                         </div>
                         <a href="<?php the_permalink(); ?>"><h4><?php the_title(); ?></h4></a>
@@ -161,72 +161,10 @@ get_header();
          <div class="col-lg-4">
             <div class="sidebar">
               <div class="row">
+                    
                 <div class="col-lg-12">
-                  <div class="sidebar-item search">
-                    <form id="search_form" name="gs" method="GET" action="#">
-                      <input type="text" name="q" class="searchText" placeholder="type to search..." autocomplete="on">
-                    </form>
-                  </div>
-                </div>
-                <div class="col-lg-12">
-                  <div class="sidebar-item recent-posts">
-                    <div class="sidebar-heading">
-                      <h2>Recent Posts</h2>
-                    </div>
-                    <div class="content">
-                    <?php wp_get_recent_posts(); ?>
-                      <ul>
-                        <li><a href="post-details.html">
-                          <h5>Vestibulum id turpis porttitor sapien facilisis scelerisque</h5>
-                          <span>May 31, 2020</span>
-                        </a></li>
-                        <li><a href="post-details.html">
-                          <h5>Suspendisse et metus nec libero ultrices varius eget in risus</h5>
-                          <span>May 28, 2020</span>
-                        </a></li>
-                        <li><a href="post-details.html">
-                          <h5>Swag hella echo park leggings, shaman cornhole ethical coloring</h5>
-                          <span>May 14, 2020</span>
-                        </a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-12">
-                  <div class="sidebar-item categories">
-                    <div class="sidebar-heading">
-                      <h2>Categories</h2>
-                    </div>
-                    <div class="content">
-                      <ul>
-                        <?php 
-                        $categories = wp_get_post_categories(get_the_ID());
-                           foreach($categories as $category){
-                                 echo '<li>-<a href="' . get_category_link($category) . '">' . get_cat_name($category) . '</a></div>';
-                           }
-                        ?>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-12">
-                  <div class="sidebar-item tags">
-                    <div class="sidebar-heading">
-                      <h2>Tag Clouds</h2>
-                    </div>
-                    <div class="content">
-                      <ul>
-                        <?php
-                        $posttags = get_the_tags();
-                        if ($posttags) {
-                           foreach ($posttags as $tag) {
-                              echo '<li><a href="' . get_tag_link($tag->term_id) . '">' . $tag->name . '</a></li>';
-                           }
-                        }
-                        ?>
-                      </ul>
-                    </div>
-                  </div>
+                    <?php get_sidebar();   ?>
+                 
                 </div>
               </div>
             </div>
@@ -234,6 +172,8 @@ get_header();
       </div>
    </div>
 </section>
-<?php 
+
+<?php
+get_sidebar(); 
 get_footer();
 ?>

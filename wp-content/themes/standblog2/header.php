@@ -38,9 +38,7 @@
 	<header class="nav-header">
       <nav class="navbar navbar-expand-lg">
         <div class="container">
-
 			<?php
-
 			if( get_custom_logo() ) :
 				the_custom_logo();
 			elseif ( is_front_page() && is_home() ) :

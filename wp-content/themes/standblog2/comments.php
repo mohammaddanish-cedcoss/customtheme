@@ -15,17 +15,14 @@
  * the visitor has not yet entered the password we will
  * return early without loading the comments.
  */
-if ( post_password_required() ) {
-	return;
-}
-?>
 
+?>
 <div id="comments" class="comments-area">
 	<?php
 	// You can start editing here -- including this comment!
 	if ( have_comments() ) :
 		?>
-		<div class="col-lg-12">
+		<div class="col-sm-8">
 			<div class="sidebar-item comments">
 				<div class="sidebar-heading">
 					<h2>
@@ -70,45 +67,6 @@ if ( post_password_required() ) {
 
 	endif; // Check for have_comments().  
 	?>
-
-	<div class="col-lg-12">
-		<div class="sidebar-item submit-comment">
-			<div class="sidebar-heading">
-			<h2>Your comment</h2>
-			</div>
-			<div class="content">
-			<form id="comment" action="#" method="post">
-				<div class="row">
-					<div class="col-md-6 col-sm-12">
-						<fieldset>
-						<input name="name" type="text" id="name" placeholder="Your name" required="">
-						</fieldset>
-					</div>
-					<div class="col-md-6 col-sm-12">
-						<fieldset>
-						<input name="email" type="text" id="email" placeholder="Your email" required="">
-						</fieldset>
-					</div>
-					<div class="col-md-12 col-sm-12">
-						<fieldset>
-						<input name="subject" type="text" id="subject" placeholder="Subject">
-						</fieldset>
-					</div>
-					<div class="col-lg-12">
-						<fieldset>
-						<textarea name="message" rows="6" id="message" placeholder="Type your comment" required=""></textarea>
-						</fieldset>
-					</div>
-					<div class="col-lg-12">
-						<fieldset>
-						<button type="submit" id="form-submit" class="main-button">Submit</button>
-						</fieldset>
-					</div>
-				</div>
-			</form>
-			</div>
-		</div>
-	</div>
 	<?php 
 	comment_form();
 	?>

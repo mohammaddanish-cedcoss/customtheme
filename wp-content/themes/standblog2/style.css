@@ -967,3 +967,9 @@ textarea {
 	margin-right: auto;
 	margin-bottom: 1.5em;
 }
+header.entry-header{
+	display: none !important;
+}
+footer.entry-footer{
+	display: none !important;
+}
