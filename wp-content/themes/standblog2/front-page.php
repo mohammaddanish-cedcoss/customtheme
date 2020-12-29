@@ -85,8 +85,8 @@ get_header();
                     $all_post= new WP_Query(array('post_type'=>'post', 'post_status'=>'publish', 'posts_per_page'=>4)); ?>
                     
                     <?php if ( $all_post->have_posts() ) : 
-                        //the loop 
-                        while ( $all_post->have_posts() ) : $all_post->the_post(); ?>
+                     //the loop 
+                     while ( $all_post->have_posts() ) : $all_post->the_post(); ?>
                     <div class="col-sm-6">
                      <div class="blog-post">
                         <div class="blog-thumb">
