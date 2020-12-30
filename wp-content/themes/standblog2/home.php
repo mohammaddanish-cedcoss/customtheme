@@ -48,42 +48,45 @@
             <div class="all-blog-posts">
               <div class="row">
                 <?php 
-                    $all_post = new WP_Query(array('post_type'=>'post', 'post_status'=>'publish',)); ?>
-                     <?php if ( $all_post->have_posts() ) : 
-                    //the loop 
-                    while ( $all_post->have_posts() ) : $all_post->the_post(); ?>
-                    <div class="col-lg-6">
-                        <div class="blog-post">
-                            <div class="blog-thumb">
-                            <?php if ( has_post_thumbnail() ) { 
-                                the_post_thumbnail( get_the_ID(), 'full' );
-                            } ?>
-                            </div>
-                            <div class="down-content">
-                                <span><?php the_category(); ?></span>
-                                <a href="<?php the_permalink(); ?>"><h4><?php the_title(); ?></h4></a>
-                                <ul class="post-info">
-                                    <li><a href="#"><?php the_author(); ?></a></li>
-                                    <li><a href="#"><?php the_date(); ?></a></li>
-                                    <li><a href="#"><?php comments_number(); ?></a></li>
-                                </ul>
-                                <p><?php the_excerpt(); ?></p>
-                                <div class="post-options">
-                                    <div class="row">
-                                    <div class="col-lg-12">
-                                        <ul class="post-tags">
-                                        <li><i class="fa fa-tags"></i></li>
-                                        <li><a href="#">Best Templates</a>,</li>
-                                        <li><a href="#">TemplateMo</a></li>
-                                        </ul>
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <?php endwhile;?>
-                <?php endif; ?>
+                  $all_post = new WP_Query(array('post_type'=>'post', 'post_status'=>'publish',)); ?>
+                  <?php
+                    if ($all_post->have_posts()) :  
+                        while ( $all_post->have_posts()) :$all_post->the_post(); 
+                            ?>
+                          <div class="col-lg-6">
+                              <div class="blog-post">
+                                  <div class="blog-thumb">
+                                    <?php if (has_post_thumbnail())
+                                    { 
+                                      the_post_thumbnail(get_the_ID(), 'full');
+                                    } 
+                                    ?>
+                                  </div>
+                                  <div class="down-content">
+                                      <span><?php the_category(); ?></span>
+                                      <a href="<?php the_permalink(); ?>"><h4><?php the_title(); ?></h4></a>
+                                      <ul class="post-info">
+                                          <li><a href="#"><?php the_author(); ?></a></li>
+                                          <li><a href="#"><?php the_date(); ?></a></li>
+                                          <li><a href="#"><?php comments_number(); ?></a></li>
+                                      </ul>
+                                      <p><?php the_excerpt(); ?></p>
+                                      <div class="post-options">
+                                          <div class="row">
+                                          <div class="col-lg-12">
+                                              <ul class="post-tags">
+                                              <li><i class="fa fa-tags"></i></li>
+                                              <li><a href="#">Best Templates</a>,</li>
+                                              <li><a href="#">TemplateMo</a></li>
+                                              </ul>
+                                          </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                        <?php endwhile;?>
+                    <?php endif; ?>
                 
                 <div class="col-lg-12">
                   <ul class="page-numbers">
