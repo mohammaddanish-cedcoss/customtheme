@@ -20,10 +20,11 @@ get_header();
            
             <!-- end of the loop -->
             <div class="item">
-               <?php if ( has_post_thumbnail() ) { 
-               blog_post_thumbnail();
-               } else  { ?>
-                              <?php } ?>
+               <?php if (has_post_thumbnail())
+                  { 
+                    blog_post_thumbnail();
+                  } 
+               ?>
                 <div class="item-content">
                     <div class="main-content">
                         <div class="meta-category">
@@ -52,7 +53,7 @@ get_header();
     </div>
 <!-- Banner Ends Here -->
 
-<section class="call-to-action" >
+<!-- <section class="call-to-action" >
     <div class="container">
     <div class="row">
         <div class="col-lg-12">
@@ -72,12 +73,12 @@ get_header();
         </div>
     </div>
     </div>
-</section>
+</section> -->
 
 <section class="blog-posts">
    <div class="container">
       <div class="row">
-         <div class="col-lg-8">
+         <div class="col-lg-7">
             <div class="all-blog-posts">
                <div class="row">
                     <?php 
@@ -158,7 +159,7 @@ get_header();
          <!-- <div class="col-lg-4">
             get_sidebar();
          </div> -->
-         <div class="col-lg-4">
+         <div class="col-lg-5">
             <div class="sidebar">
               <div class="row">
                     

@@ -17,12 +17,12 @@
  */
 
 ?>
-<div id="comments" class="comments-area">
+<div id="comments" class="comments-area col-sm-8">
 	<?php
 	// You can start editing here -- including this comment!
 	if ( have_comments() ) :
 		?>
-		<div class="col-sm-8">
+		<div>
 			<div class="sidebar-item comments">
 				<div class="sidebar-heading">
 					<h2>
@@ -39,7 +39,7 @@
 							/* translators: 1: comment count number, 2: title. */
 							esc_html( _nx( '%1$s comment on &ldquo;%2$s&rdquo;', '%1$s comments on &ldquo;%2$s&rdquo;', $blog_comment_count, 'comments title', 'blog' ) ),
 							number_format_i18n( $blog_comment_count ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-							'<span>' . wp_kses_post( get_the_title() ) . '</span>'
+							'<span>' .wp_kses_post(get_the_title()).'</span>'
 						);
 					}
 					?>
@@ -49,7 +49,7 @@
 					<?php the_comments_navigation(); ?>
 
 					<ul class="comment-list">
-						<?php wp_list_comments( 'type=comment&callback=mytheme_comment' ); ?>
+						<?php wp_list_comments('type=comment&callback=mytheme_comment'); ?>
 						
 					</ul><!-- .comment-list -->	
 				</div>

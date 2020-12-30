@@ -18,7 +18,7 @@
     
     <!-- Banner Ends Here -->
 
-    <section class="call-to-action">
+    <!-- <section class="call-to-action">
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
@@ -38,7 +38,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
 
     <section class="blog-posts grid-system">
