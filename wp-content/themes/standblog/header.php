@@ -27,24 +27,24 @@
 <?php wp_body_open(); ?>
 <div id="page" class="site">
 	<!-- ***** Preloader Start ***** -->
-    <div id="preloader">
-        <div class="jumper">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div>  
-    <!-- ***** Preloader End ***** -->
+	<div id="preloader">
+		<div class="jumper">
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+	</div>  
+	<!-- ***** Preloader End ***** -->
 	<header class="nav-header">
-      <nav class="navbar navbar-expand-lg">
-        <div class="container">
+		<nav class="navbar navbar-expand-lg">
+		<div class="container">
 			<?php
-			if( get_custom_logo() ) :
+			if ( get_custom_logo() ) :
 				the_custom_logo();
 			elseif ( is_front_page() && is_home() ) :
 				?>
 				<a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><h2><?php bloginfo( 'name' ); ?><em>.</em></h2></a>
-			<?php
+				<?php
 			else :
 				?>
 				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
@@ -56,22 +56,22 @@
 				<p class="site-description"><?php echo $blog_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
 			<?php endif; ?>	
 
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarResponsive">
-	
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+
 			<?php
 			wp_nav_menu(
 				array(
 					'theme_location' => 'menu-1',
 					'container' => 'ul',
-					'menu_class'   => 'navbar-nav ml-auto'
+					'menu_class'   => 'navbar-nav ml-auto',
 				)
 			);
 			?>
-          </div>
-        </div>
-      </nav>
-    </header>
+			</div>
+		</div>
+		</nav>
+	</header>
 <!-- #masthead -->

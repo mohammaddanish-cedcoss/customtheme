@@ -142,23 +142,21 @@ add_action( 'widgets_init', 'blog_widgets_init' );
 function blog_scripts() {
 	wp_enqueue_style( 'blog-style', get_stylesheet_uri(), array(), _S_VERSION );
 	wp_style_add_data( 'blog-style', 'rtl', 'replace' );
+	// include css.
+	wp_enqueue_style( 'main-style', get_template_directory_uri() . '/assets/css/templatemo-stand-blog.css', _S_VERSION, '1.0', 'all' );
+	wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css', _S_VERSION, '1.0', 'all' );
+	wp_enqueue_style( 'owl', get_template_directory_uri() . '/assets/css/owl.css', _S_VERSION, '1.0', 'all' );
+	wp_enqueue_style( 'flex-slider', get_template_directory_uri() . '/assets/css/flex-slider.css', _S_VERSION, '1.0', 'all' );
 
-	//include css
-	wp_enqueue_style( 'main-style', get_template_directory_uri() . '/assets/css/templatemo-stand-blog.css', _S_VERSION,'1.0','all');
-	wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css', _S_VERSION,'1.0','all');
-	wp_enqueue_style( 'owl', get_template_directory_uri() . '/assets/css/owl.css', _S_VERSION,'1.0','all');
-	wp_enqueue_style( 'flex-slider', get_template_directory_uri() . '/assets/css/flex-slider.css', _S_VERSION,'1.0','all');
-	
+	// include js.
 	wp_enqueue_script( 'blog-navigation', get_template_directory_uri() . '/assets/js/navigation.js', array(), _S_VERSION, true );
-
-	//include js
-	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.bundle.min.js', array (),  _S_VERSION, true );
-	wp_enqueue_script( 'jQuery', get_template_directory_uri() . '/assets/js/jquery.min.js', array (),  _S_VERSION, true );
-	wp_enqueue_script( 'custom', get_template_directory_uri() . '/assets/js/custom.js', array (),  _S_VERSION, true );
-	wp_enqueue_script( 'owl', get_template_directory_uri() . '/assets/js/owl.js', array (),  _S_VERSION, true );
-	wp_enqueue_script( 'slick', get_template_directory_uri() . '/assets/js/slick.js', array (),  _S_VERSION, true );
-	wp_enqueue_script( 'accordions', get_template_directory_uri() . '/assets/js/accordions.js', array (),  _S_VERSION, true );
-	wp_enqueue_script( 'isotope', get_template_directory_uri() . '/assets/js/isotope.js', array (),  _S_VERSION, true );
+	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.bundle.min.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'jQuery', get_template_directory_uri() . '/assets/js/jquery.min.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'custom', get_template_directory_uri() . '/assets/js/custom.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'owl', get_template_directory_uri() . '/assets/js/owl.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'slick', get_template_directory_uri() . '/assets/js/slick.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'accordions', get_template_directory_uri() . '/assets/js/accordions.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'isotope', get_template_directory_uri() . '/assets/js/isotope.js', array(), _S_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -193,70 +191,81 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
-//add nav-link class to anchor tag in nav
-function add_menu_link_class($atts, $item, $args)
-{
-    $atts['class'] = 'nav-link';
-    return $atts;
+/**
+ * Add nav link class in <a> tag.
+ */
+function add_menu_link_class( $atts, $item, $args ) {
+	$atts['class'] = 'nav-link';
+	return $atts;
 }
-add_filter('nav_menu_link_attributes', 'add_menu_link_class', 1, 3);
+add_filter( 'nav_menu_link_attributes', 'add_menu_link_class', 1, 3 );
 
-// register new menu
+/**Register new menu*/
 function register_my_menu() {
-	register_nav_menu('new-menu',__( 'Secondary' ));
+	register_nav_menu( 'new-menu', __( 'Secondary' ) );
 }
 add_action( 'init', 'register_my_menu' );
 
-//ADD CUSTOM COMMENT LAYOUT
-function mytheme_comment($comment, $args, $depth) {
-    if ( 'div' === $args['style'] ) {
-        $tag       = 'div';
-        $add_below = 'comment';
-    } else {
-        $tag       = 'li';
-        $add_below = 'div-comment';
-    }?>
-    <<?php echo $tag; ?> <?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ); ?> id="comment-<?php comment_ID() ?>"><?php 
-    if ( 'div' != $args['style'] ) { ?>
-        <div id="div-comment-<?php comment_ID() ?>" class="comment-body"><?php
-    } ?>
-        <div class="comment-author vcard"><?php 
-            if ( $args['avatar_size'] != 0 ) {
-                echo get_avatar($comment, $args['avatar_size']); 
-            } 
-            printf(__( '<cite class="fn">%s</cite> <span class="says">says:</span>' ), get_comment_author_link() ); ?>
-        </div><?php 
-        if ( $comment->comment_approved == '0' ) { ?>
-            <em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.' ); ?><br/><?php 
-        } ?>
-        <div class="comment-meta commentmetadata">
-            <?php
-                /* translators: 1: date, 2: time */
-                printf( 
-                    __('%1$s at %2$s'), 
-                    get_comment_date(),  
-                    get_comment_time() 
-                ); ?>
-            <?php 
-            edit_comment_link( __( '(Edit)' ), '  ', '' ); ?>
-        </div>
+/**ADD CUSTOM COMMENT LAYOUT.*/
+function mytheme_comment( $comment, $args, $depth ) {
+	if ( 'div' === $args['style'] ) {
+		$tag = 'div';
+		$add_below = 'comment';
+	} else {
+		$tag = 'li';
+		$add_below = 'div-comment';
+	}
+	?>
+	<<?php echo esc_html( $tag ); ?> <?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ); ?> id="comment-<?php comment_ID(); ?>">
+	<?php
+	if ( 'div' !== $args['style'] ) {
+		?>
+	<div id="div-comment-<?php comment_ID(); ?>" class="comment-body">
+	<?php } ?>
+	<div class="comment-author vcard">
+	<?php
+	if ( ( $args['avatar_size'] ) !== 0 ) {
+			echo get_avatar( $comment, $args['avatar_size'] );
+	}
+	printf( __( '<cite class="fn">%s</cite> <span class="says">says:</span>' ), get_comment_author_link() );
+	?>
+	</div>
+	<?php
+	if ( '$comment->comment_approved' === '0' ) {
+		?>
+			<em class="comment-awaiting-moderation"><?php esc_html_e( 'Your comment is awaiting moderation.' ); ?><br/>
+		<?php } ?>
+		<div class="comment-meta commentmetadata">
+			<?php
+				/* translators: 1: date, 2: time */
+				printf( __( '%1$s at %2$s' ), esc_html( get_comment_date() ), esc_html( get_comment_time() ) );
+			?>
+			<?php
+			edit_comment_link( __( '(Edit)' ), '  ', '' );
+			?>
+		</div>
 
-        <?php comment_text(); ?>
+		<?php comment_text(); ?>
 
-        <div class="reply"><?php 
-                comment_reply_link( 
-                    array_merge( 
-                        $args, 
-                        array( 
-                            'add_below' => $add_below, 
-                            'depth'     => $depth, 
-                            'max_depth' => $args['max_depth'] 
-                        ) 
-                    ) 
-                ); ?>
-        </div><?php 
-    if ( 'div' != $args['style'] ) : ?>
-        </div><?php 
-    endif;
+		<div class="reply">
+		<?php
+			comment_reply_link(
+				array_merge(
+					$args,
+					array(
+						'add_below' => $add_below,
+						'depth'     => $depth,
+						'max_depth' => $args['max_depth'],
+					)
+				)
+			);
+		?>
+		</div>
+		<?php
+		if ( 'div' !== $args['style'] ) :
+			?>
+		</div>
+			<?php
+				endif;
 }
 
